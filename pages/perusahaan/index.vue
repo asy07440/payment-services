@@ -1,3 +1,0 @@
-<template>
-m perusahaan
-</template>

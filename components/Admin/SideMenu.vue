@@ -1,10 +1,8 @@
-<!-- AdminSideMenu.vue -->
 <template>
   <ConfirmationDialog ref="confirmationDialog" />
 
   <div class="side-menu-container">
     <v-list class="text-white side-menu" density="comfortable">
-      <!-- Main Menu -->
       <div class="section-label">Menu</div>
 
       <v-list-item
@@ -21,148 +19,21 @@
         <span class="menu-text">Dashboard</span>
       </v-list-item>
 
-      <!-- Scrollable Container untuk Menu yang Panjang -->
-      <div class="scrollable-menu-container">
-        <!-- Master Data Menu -->
-        <v-list-group>
-          <template v-slot:activator="{ props, isOpen }">
-            <v-list-item v-bind="props" rounded="lg" class="menu-item">
-              <template v-slot:prepend>
-                <div class="icon-wrapper">
-                  <v-icon icon="mdi-folder-open-outline" size="22" />
-                </div>
-              </template>
+      <v-list-item
+        to="/admin/payments"
+        class="menu-item"
+        active-class="active-menu-item"
+        rounded="lg"
+      >
+        <template v-slot:prepend>
+          <div class="icon-wrapper">
+            <v-icon icon="mdi-credit-card-outline" size="22" />
+          </div>
+        </template>
+        <span class="menu-text">Payments</span>
+      </v-list-item>
 
-              <span class="menu-text">Master</span>
-
-              <template v-slot:append>
-                <v-icon
-                  size="18"
-                  class="menu-arrow"
-                  :class="{ 'rotate-90': isOpen }"
-                  icon="mdi-chevron-right"
-                />
-              </template>
-            </v-list-item>
-          </template>
-
-          <v-list-item
-            v-for="item in masterMenu"
-            :key="item.to"
-            :to="item.to"
-            class="submenu-item"
-            active-class="active-submenu-item"
-            rounded="md"
-          >
-            <template v-slot:prepend>
-              <div class="submenu-icon">
-                <v-icon :icon="item.icon" size="20" />
-              </div>
-            </template>
-
-            <span class="submenu-text">{{ item.title }}</span>
-          </v-list-item>
-        </v-list-group>
-
-        <!-- Saldo Menu -->
-        <v-list-group>
-          <template v-slot:activator="{ props, isOpen }">
-            <v-list-item v-bind="props" rounded="lg" class="menu-item">
-              <template v-slot:prepend>
-                <div class="icon-wrapper">
-                  <v-icon icon="mdi-cash-multiple" size="22" />
-                </div>
-              </template>
-
-              <span class="menu-text">Saldo</span>
-
-              <template v-slot:append>
-                <v-icon
-                  size="18"
-                  class="menu-arrow"
-                  :class="{ 'rotate-90': isOpen }"
-                  icon="mdi-chevron-right"
-                />
-              </template>
-            </v-list-item>
-          </template>
-
-          <v-list-item
-            to="/admin/saldo"
-            class="submenu-item"
-            active-class="active-submenu-item"
-            rounded="md"
-          >
-            <template v-slot:prepend>
-              <div class="submenu-icon">
-                <v-icon icon="mdi-cash-plus" size="20" />
-              </div>
-            </template>
-            <span class="submenu-text">Awal</span>
-          </v-list-item>
-
-          <v-list-item
-            to="/admin/saldo/harian"
-            class="submenu-item"
-            active-class="active-submenu-item"
-            rounded="md"
-          >
-            <template v-slot:prepend>
-              <div class="submenu-icon">
-                <v-icon icon="mdi-calendar-check-outline" size="20" />
-              </div>
-            </template>
-            <span class="submenu-text">Harian</span>
-          </v-list-item>
-        </v-list-group>
-
-        <!-- Transaksi Menu -->
-        <v-list-item
-          to="/admin/transaksi-kas"
-          class="menu-item"
-          active-class="active-menu-item"
-          rounded="lg"
-        >
-          <template v-slot:prepend>
-            <div class="icon-wrapper">
-              <v-icon icon="mdi-cash-register" size="22" />
-            </div>
-          </template>
-          <span class="menu-text">Transaksi Kas</span>
-        </v-list-item>
-
-        <v-list-item
-          to="/admin/jurnal"
-          class="menu-item"
-          active-class="active-menu-item"
-          rounded="lg"
-        >
-          <template v-slot:prepend>
-            <div class="icon-wrapper">
-              <v-icon icon="mdi-notebook-edit-outline" size="22" />
-            </div>
-          </template>
-          <span class="menu-text">Jurnal</span>
-        </v-list-item>
-
-        <v-list-item
-          to="/admin/laporan"
-          class="menu-item"
-          active-class="active-menu-item"
-          rounded="lg"
-        >
-          <template v-slot:prepend>
-            <div class="icon-wrapper">
-              <v-icon icon="mdi-chart-bar" size="22" />
-            </div>
-          </template>
-          <span class="menu-text">Report</span>
-        </v-list-item>
-      </div>
-
-      <!-- System Section -->
       <div class="menu-section mt-auto">
-        <!-- Logout -->
         <v-list-item
           @click="logout()"
           class="menu-item logout-item"
@@ -188,30 +59,9 @@ import type { ConfirmationDialog } from "#components";
 import { getAuth, signOut } from "firebase/auth";
 
 const notificationStore = useNotificationStore();
-// const role = computed(() => useUserStore().getdataprivilege);
 const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog> | null>(
   null,
 );
-
-// Menu data sesuai dengan struktur sebelumnya
-const masterMenu = [
-  {
-    to: "/admin/master/users",
-    icon: "mdi-account-multiple-outline",
-    title: "Users",
-  },
-  {
-    to: "/admin/master/akun/kategori",
-    icon: "mdi-shape-outline",
-    title: "Kategori Akun",
-  },
-  { to: "/admin/master/akun", icon: "mdi-book-account-outline", title: "Akun" },
-  {
-    to: "/admin/master/perusahaan",
-    icon: "mdi-office-building-outline",
-    title: "Perusahaan",
-  },
-];
 
 const logout = async () => {
   const confirmed = await confirmationDialog.value?.show(
