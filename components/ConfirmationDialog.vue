@@ -17,7 +17,7 @@
 
       <div class="card-button-wrapper">
         <button class="card-button secondary" @click="onCancel">Cancel</button>
-        <button class="card-button primary" @click="onConfirm">Delete</button>
+        <button class="card-button primary" @click="onConfirm">Submit</button>
       </div>
     </div>
   </v-dialog>

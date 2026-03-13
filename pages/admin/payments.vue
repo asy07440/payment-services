@@ -30,7 +30,7 @@
         />
 
         <v-row>
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <a-text-field
               v-model="newPayment.amount"
               label="Amount"
@@ -41,8 +41,8 @@
             />
           </v-col>
 
-          <v-col cols="12" sm="6" class="py-0">
-            <v-select
+          <v-col cols="12" sm="6" >
+            <a-select
               v-model="newPayment.status"
               :items="statusOptions"
               label="Status"
@@ -54,7 +54,7 @@
         </v-row>
 
         <v-row>
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <a-text-field
               v-model="newPayment.customerEmail"
               label="Customer Email"
@@ -64,7 +64,7 @@
             />
           </v-col>
 
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <v-select
               v-model="newPayment.paymentMethod"
               :items="paymentMethods"
@@ -131,7 +131,7 @@
         />
 
         <v-row>
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <a-text-field
               v-model="editPayment.amount"
               label="Amount"
@@ -141,7 +141,7 @@
             />
           </v-col>
 
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <v-select
               v-model="editPayment.status"
               :items="statusOptions"
@@ -154,7 +154,7 @@
         </v-row>
 
         <v-row>
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <a-text-field
               v-model="editPayment.customerEmail"
               label="Customer Email"
@@ -163,7 +163,7 @@
             />
           </v-col>
 
-          <v-col cols="12" sm="6" class="py-0">
+          <v-col cols="12" sm="6" >
             <v-select
               v-model="editPayment.paymentMethod"
               :items="paymentMethods"

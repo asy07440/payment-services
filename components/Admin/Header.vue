@@ -16,25 +16,38 @@
       );
       position: fixed;
       border: none;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 4px 20px rgba(0, 0, 0, 0.12);
     "
   >
     <template v-slot:prepend>
       <v-list-item class="ma-1 pa-1">
-        <div class="d-flex align-center justify-center w-100">
-          <img
-            src="https://imagedelivery.net/_tN3dTar-XzU6X9_PBgTbA/1043a53d-dea0-4de7-86a2-7dfcb529f000/heromobile"
-            alt="Aresa"
-            class="logo-img"
-            :class="{ 'logo-rail': !drawer }"
-          />
+        <div
+          class="d-flex align-center justify-center w-100 text-white"
+          style="height: 50px; overflow: hidden"
+        >
+          <div v-if="drawer" class="d-flex align-center ml-2">
+            <div
+              class="font-weight-black"
+              style="font-size: 1.15rem; letter-spacing: -0.5px"
+            >
+              DURIAN<span style="color: #4ade80">PAY</span>
+            </div>
+          </div>
+
+          <div
+            v-else
+            class="font-weight-black"
+            style="font-size: 1.2rem; letter-spacing: -0.5px"
+          >
+            D<span style="color: #4ade80">P</span>
+          </div>
         </div>
       </v-list-item>
 
       <v-divider class="border-opacity-50 my-1" color="white" />
     </template>
-
     <admin-side-menu />
   </v-navigation-drawer>
 
